@@ -11,67 +11,63 @@ import UIKit
 
 
 public class WebServices {
+    //var socket:WebSocket?
+    private let session: URLSession
+    var socket: URLSessionWebSocketTask!
     
-    // creates request from fetch data from server.
-    class func requestHttp<T:Decodable>(urlString:String,method:HttpsMethod, param:Dictionary<String, Any>?, decode:@escaping(Decodable) -> T?, completion: @escaping (Result<T?,APIError>)->()) {
-        print(urlString)
+    init() {
+      self.session = URLSession(configuration: .default)
+      self.connect()
+    }
+    func connect() {
+      self.socket = session.webSocketTask(with: URL(string: "ws://city-ws.herokuapp.com/")!)
+      self.listen()
+      self.socket.resume()
        
-        let url = urlString
-        guard let request = HeaderRequest.requestWithHeaders(httpMethod: method, url: url, parameters: param) else{
-            completion(Result.failure(APIError.failedRequest("https issue")))
-            return
-        }
-        
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
-            if (error != nil) {
-                completion(Result.failure(APIError.failedRequest(error?.localizedDescription)))
-                
-            } else {
-                guard let serverData = data, error == nil else {
-                  completion(Result.failure(APIError.failedRequest(error?.localizedDescription)))
-                  return
-                }
-                
-                do {
-                 //   let string = String(data: serverData, encoding: .utf8)
-                    let decoder = JSONDecoder()
-                    let object = try decoder.decode(T.self, from: serverData)
-                    
-                    completion(Result.success(object))
-                } catch let parsingError {
-                    completion(Result.failure(APIError.failedRequest(parsingError.localizedDescription)))
-                }
-            }
-        })
-        dataTask.resume()
     }
     
-    
-}
-
-//MARK: - header request
-public class HeaderRequest{
-    
-    class func requestWithHeaders(httpMethod: HttpsMethod, url: String,parameters:Dictionary<String, Any>?) -> URLRequest? {
+    func listen() {
+     
+      self.socket.receive { [weak self] (result) in
         
-        guard let validURL = URL(string: url) else{
-            return nil
+        switch result {
+        case .failure(let error):
+          print(error)
+         
+             return
+          case .success(let message):
+          
+          switch message {
+          case .data(let data):
+             break
+          case .string(let str):
+             guard let data = str.data(using: .utf8) else { return }
+           break
+          @unknown default:
+            break
+          }
         }
-        let postData = try? JSONSerialization.data(withJSONObject: parameters ?? [:], options: [])
-        
-        var request = URLRequest(url: validURL)
-        request.httpMethod = httpMethod.localization
-        request.timeoutInterval = 60
-        var headers = request.allHTTPHeaderFields ?? [:]
-        headers["Content-Type"] = "application/json"
-        request.allHTTPHeaderFields = headers
-        if(parameters != nil){
-            request.httpBody = postData
-        }
-        
-        return request
+       
+        self?.listen()
+      }
     }
-    
-    
+    func decodeData<T : Decodable>(from data : Data) throws -> (Result<T?,APIError>)
+    {
+        
+        let decoder = JSONDecoder()
+        let object = try decoder.decode(T.self, from: Data())
+        
+        return Result.success(object)
+    }
+    func gettResponse<T:Decodable>(model:T,completion: @escaping (Result<T?,APIError>)->()) {
+        do {
+            let decoder = JSONDecoder()
+            let object = try decoder.decode(T.self, from: Data())
+            
+            completion(Result.success(object))
+        } catch let parsingError {
+            completion(Result.failure(APIError.failedRequest(parsingError.localizedDescription)))
+        }
+    }
+   
 }

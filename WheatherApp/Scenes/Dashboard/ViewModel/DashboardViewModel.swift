@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+
+class DashboardViewModel {
+    var webservice:WebServices?
+    init() {
+        webservice = WebServices()
+    }
+    func fetchWeatherData() {
+       
+    }
+}
