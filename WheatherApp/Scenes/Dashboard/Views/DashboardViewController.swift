@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import WheatherGraph
 
 class DashboardViewController: UIViewController {
 
+    @IBOutlet weak var apiGraphView: WheatherGraphView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,7 +18,7 @@ class DashboardViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-       
+        apiGraphView.setAQI(api: 100.0)
       
     }
     
