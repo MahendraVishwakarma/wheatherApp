@@ -1,14 +1,14 @@
 //
 //  Utils.swift
-//  XMMPAuth
+//  WheatherApp
 //
-//  Created by Mahendra Vishwakarma on 24/10/21.
+//  Created by Mahendra Vishwakarma on 18/12/21.
 //
 
 import Foundation
-class Utils {
-    static let cityURL = "http://api.openweathermap.org/data/2.5/find?lat=15.3173&lon=75.7139&cnt=50&appid=ca648534ff7ed2d9b633adb2a76fc56e"
-    static let weatherDetails = ""
+import UIKit
+struct Utils {
+    static let websocketURL = "ws://city-ws.herokuapp.com/"
 }
 
 //Result type
@@ -19,23 +19,25 @@ public enum Result<T, U> where U:Error {
 
 // custom error
 public enum APIError:Error {
-     case failedRequest(String?)
+    case failedRequest(String?)
+    case invalidData
 }
-// hTTPS methods type
-public enum HttpsMethod {
-    case Post
-    case Get
-    case Put
-    case Delate
-    
-    var localization:String{
-        switch self {
-        case .Post: return "POST"
-        case .Get: return "GET"
-        case .Put: return "PUT"
-        case .Delate: return "Delete"
-            
+public enum Status {
+    case success
+    case failed
+}
+enum DashboardGradientColors {
+    case top
+    case bottom
+    var value: CGColor {
+        get {
+            switch self {
+            case .bottom:
+                return UIColor(red: 135.0/255.0, green: 206.0/255, blue: 250.0/255, alpha: 0.5).cgColor
+            case .top:
+                return UIColor.blue.cgColor
+                //return UIColor(red: 29.0/255.0, green: 98.0/255, blue: 233.0/255, alpha: 1.0).cgColor
+            }
         }
-        
     }
 }

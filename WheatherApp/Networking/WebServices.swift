@@ -1,73 +1,86 @@
 //
 //  WebServices.swift
-//  XMMPAuth
+//  WheatherApp
 //
-//  Created by Mahendra Vishwakarma on 25/10/21.
+//  Created by Mahendra Vishwakarma on 17/12/21.
 //  Copyright © 2021 Mahendra. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-
 public class WebServices {
-    //var socket:WebSocket?
-    private let session: URLSession
-    var socket: URLSessionWebSocketTask!
+    
+    let session: URLSession
+    private var socket: URLSessionWebSocketTask!
+    typealias listenHAndler = (Result<URLSessionWebSocketTask.Message, Error>) -> Void
     
     init() {
-      self.session = URLSession(configuration: .default)
-      self.connect()
-    }
-    func connect() {
-      self.socket = session.webSocketTask(with: URL(string: "ws://city-ws.herokuapp.com/")!)
-      self.listen()
-      self.socket.resume()
-       
+        self.session = URLSession(configuration: .default)
+        self.connect()
     }
     
-    func listen() {
-     
-      self.socket.receive { [weak self] (result) in
-        
-        switch result {
-        case .failure(let error):
-          print(error)
-         
-             return
-          case .success(let message):
-          
-          switch message {
-          case .data(let data):
-             break
-          case .string(let str):
-             guard let data = str.data(using: .utf8) else { return }
-           break
-          @unknown default:
-            break
-          }
+    func connect() {
+        if let url = URL(string: Utils.websocketURL){
+            self.socket = session.webSocketTask(with: url)
+            self.socket.resume()
         }
-       
-        self?.listen()
-      }
-    }
-    func decodeData<T : Decodable>(from data : Data) throws -> (Result<T?,APIError>)
-    {
         
-        let decoder = JSONDecoder()
-        let object = try decoder.decode(T.self, from: Data())
-        
-        return Result.success(object)
     }
-    func gettResponse<T:Decodable>(model:T,completion: @escaping (Result<T?,APIError>)->()) {
-        do {
-            let decoder = JSONDecoder()
-            let object = try decoder.decode(T.self, from: Data())
+    
+    func listen(completionHandler: @escaping listenHAndler) {
+        self.socket.receive {(result) in
             
-            completion(Result.success(object))
-        } catch let parsingError {
-            completion(Result.failure(APIError.failedRequest(parsingError.localizedDescription)))
+            switch result {
+            case .failure(let error):
+                print(error)
+                completionHandler(.failure(error))
+            case .success(let message):
+                
+                completionHandler(.success(message))
+            }
+            
+        }
+        
+    }
+    
+    func fetchResponse<T: Decodable>(_ objectType: T.Type, completion:  @escaping (Result<T?,APIError>)->()) {
+        
+        listen { (response) in
+            switch response{
+            case .failure(let error):
+                completion(Result.failure(APIError.failedRequest(error.localizedDescription)))
+            case .success(let response):
+                let decoder = JSONDecoder()
+                switch response {
+                case .data(let data):
+                    do {
+                        let object = try decoder.decode(T.self, from: data)
+                        completion(Result.success(object))
+                        
+                    } catch let parsingError {
+                        completion(Result.failure(APIError.failedRequest(parsingError.localizedDescription)))
+                    }
+                    
+                case .string(let str):
+                    if let data = str.data(using: .utf8) {
+                        do {
+                            let object = try decoder.decode(T.self, from: data)
+                            completion(Result.success(object))
+                            
+                        } catch let parsingError {
+                            completion(Result.failure(APIError.failedRequest(parsingError.localizedDescription)))
+                        }
+                    }
+                    else {
+                        completion(Result.failure(APIError.invalidData))
+                    }
+                    
+                @unknown default:
+                    completion(Result.failure(APIError.invalidData))
+                }
+                
+            }
         }
     }
-   
 }

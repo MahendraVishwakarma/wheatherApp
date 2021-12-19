@@ -7,6 +7,11 @@
 
 import Foundation
 
-struct WeatherModel:Decodable {
-    
+// MARK: - WheatherModelElement
+struct WheatherModelElements: Codable {
+    let city: String
+    let aqi: Double
 }
+
+typealias WheatherModel = [WheatherModelElements]
+

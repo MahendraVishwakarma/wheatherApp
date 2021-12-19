@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0099C073D992A8F352FC8E3B /* Pods_WheatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9E0E61E54499448C8495EF /* Pods_WheatherApp.framework */; };
 		5878D2A8C38236164D599E62 /* Pods_WheatherAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD3EBD0FB0C14BF1730A5AC /* Pods_WheatherAppTests.framework */; };
 		801E7EE2276E31C300EE4209 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E7EE1276E31C300EE4209 /* Helper.swift */; };
 		801E7EE6276E332100EE4209 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E7EE5276E332100EE4209 /* ColorExtension.swift */; };
 		801E7EEA276E457700EE4209 /* ConstantsValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E7EE9276E457700EE4209 /* ConstantsValue.swift */; };
+		801E7F14276F1A9A00EE4209 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E7F13276F1A9A00EE4209 /* Protocols.swift */; };
+		801E7F19276F343D00EE4209 /* CityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E7F17276F343D00EE4209 /* CityListViewController.swift */; };
+		801E7F1A276F343E00EE4209 /* CityListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801E7F18276F343D00EE4209 /* CityListViewController.xib */; };
+		801E7F1F276F3D6900EE4209 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E7F1D276F3D6900EE4209 /* CityTableViewCell.swift */; };
+		801E7F20276F3D6900EE4209 /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801E7F1E276F3D6900EE4209 /* CityTableViewCell.xib */; };
 		803B971C276CE6DC002AD61D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B971B276CE6DC002AD61D /* AppDelegate.swift */; };
 		803B971E276CE6DC002AD61D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B971D276CE6DC002AD61D /* SceneDelegate.swift */; };
 		803B9725276CE6DF002AD61D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 803B9724276CE6DF002AD61D /* Assets.xcassets */; };
@@ -20,12 +24,11 @@
 		803B976C276CEE8A002AD61D /* AppIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 803B976B276CEE8A002AD61D /* AppIcons.xcassets */; };
 		803B9770276CF09C002AD61D /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B976F276CF09C002AD61D /* WebServices.swift */; };
 		803B9774276CF0CA002AD61D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B9773276CF0CA002AD61D /* Utils.swift */; };
-		803B977F276CF40A002AD61D /* WebServicesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B977E276CF40A002AD61D /* WebServicesExtension.swift */; };
+		803B977F276CF40A002AD61D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B977E276CF40A002AD61D /* Extension.swift */; };
 		803B978A276CF84A002AD61D /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B9788276CF84A002AD61D /* DashboardViewController.swift */; };
 		803B978B276CF84A002AD61D /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803B9789276CF84A002AD61D /* DashboardViewController.xib */; };
 		803B9790276D0892002AD61D /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B978F276D0892002AD61D /* DashboardViewModel.swift */; };
 		803B9794276D094B002AD61D /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B9793276D094B002AD61D /* WeatherModel.swift */; };
-		803B97C0276E14C5002AD61D /* WheatherGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 803B97B0276E14C5002AD61D /* WheatherGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		803B97C3276E14C5002AD61D /* WheatherGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803B97AE276E14C5002AD61D /* WheatherGraph.framework */; };
 		803B97C4276E14C5002AD61D /* WheatherGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803B97AE276E14C5002AD61D /* WheatherGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		803B9806276E1734002AD61D /* WheatherGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B9805276E1734002AD61D /* WheatherGraphView.swift */; };
@@ -63,10 +66,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		25AE7BA415E8027EAC3AFB01 /* Pods-WheatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WheatherApp.debug.xcconfig"; path = "Target Support Files/Pods-WheatherApp/Pods-WheatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		801E7EE1276E31C300EE4209 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		801E7EE5276E332100EE4209 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		801E7EE9276E457700EE4209 /* ConstantsValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsValue.swift; sourceTree = "<group>"; };
+		801E7F13276F1A9A00EE4209 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		801E7F17276F343D00EE4209 /* CityListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListViewController.swift; sourceTree = "<group>"; };
+		801E7F18276F343D00EE4209 /* CityListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityListViewController.xib; sourceTree = "<group>"; };
+		801E7F1D276F3D6900EE4209 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		801E7F1E276F3D6900EE4209 /* CityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
 		803B9718276CE6DC002AD61D /* WheatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WheatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		803B971B276CE6DC002AD61D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		803B971D276CE6DC002AD61D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,20 +86,16 @@
 		803B976B276CEE8A002AD61D /* AppIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcons.xcassets; sourceTree = "<group>"; };
 		803B976F276CF09C002AD61D /* WebServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
 		803B9773276CF0CA002AD61D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		803B977E276CF40A002AD61D /* WebServicesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServicesExtension.swift; sourceTree = "<group>"; };
+		803B977E276CF40A002AD61D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		803B9788276CF84A002AD61D /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		803B9789276CF84A002AD61D /* DashboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
 		803B978F276D0892002AD61D /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		803B9793276D094B002AD61D /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		803B97AE276E14C5002AD61D /* WheatherGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WheatherGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		803B97B0276E14C5002AD61D /* WheatherGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WheatherGraph.h; sourceTree = "<group>"; };
 		803B97B1276E14C5002AD61D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		803B9805276E1734002AD61D /* WheatherGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheatherGraphView.swift; sourceTree = "<group>"; };
-		8B7A35D1166E45E83C47BFDF /* Pods-WheatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WheatherApp.release.xcconfig"; path = "Target Support Files/Pods-WheatherApp/Pods-WheatherApp.release.xcconfig"; sourceTree = "<group>"; };
 		9CD3EBD0FB0C14BF1730A5AC /* Pods_WheatherAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WheatherAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9FD840A0EE8BDBDEB5F3FFC4 /* Pods-WheatherAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WheatherAppTests.release.xcconfig"; path = "Target Support Files/Pods-WheatherAppTests/Pods-WheatherAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		AE9E0E61E54499448C8495EF /* Pods_WheatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WheatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CAECCB1823C3FFC2D1AA6FF8 /* Pods-WheatherAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WheatherAppTests.debug.xcconfig"; path = "Target Support Files/Pods-WheatherAppTests/Pods-WheatherAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +103,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0099C073D992A8F352FC8E3B /* Pods_WheatherApp.framework in Frameworks */,
 				803B97C3276E14C5002AD61D /* WheatherGraph.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,7 +132,6 @@
 				803B974D276CE922002AD61D /* WheatherAppTests */,
 				803B97AF276E14C5002AD61D /* WheatherGraph */,
 				803B9719276CE6DC002AD61D /* Products */,
-				EFAB3BBCF2BA48E88911E30D /* Pods */,
 				A8F129E534CB5866414A3BA0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -189,7 +190,8 @@
 			isa = PBXGroup;
 			children = (
 				803B9773276CF0CA002AD61D /* Utils.swift */,
-				803B977E276CF40A002AD61D /* WebServicesExtension.swift */,
+				803B977E276CF40A002AD61D /* Extension.swift */,
+				801E7F13276F1A9A00EE4209 /* Protocols.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -250,6 +252,10 @@
 			children = (
 				803B9788276CF84A002AD61D /* DashboardViewController.swift */,
 				803B9789276CF84A002AD61D /* DashboardViewController.xib */,
+				801E7F17276F343D00EE4209 /* CityListViewController.swift */,
+				801E7F18276F343D00EE4209 /* CityListViewController.xib */,
+				801E7F1D276F3D6900EE4209 /* CityTableViewCell.swift */,
+				801E7F1E276F3D6900EE4209 /* CityTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -265,7 +271,6 @@
 		803B97AF276E14C5002AD61D /* WheatherGraph */ = {
 			isa = PBXGroup;
 			children = (
-				803B97B0276E14C5002AD61D /* WheatherGraph.h */,
 				803B97B1276E14C5002AD61D /* Info.plist */,
 				803B9805276E1734002AD61D /* WheatherGraphView.swift */,
 				801E7EE1276E31C300EE4209 /* Helper.swift */,
@@ -284,17 +289,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EFAB3BBCF2BA48E88911E30D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				25AE7BA415E8027EAC3AFB01 /* Pods-WheatherApp.debug.xcconfig */,
-				8B7A35D1166E45E83C47BFDF /* Pods-WheatherApp.release.xcconfig */,
-				CAECCB1823C3FFC2D1AA6FF8 /* Pods-WheatherAppTests.debug.xcconfig */,
-				9FD840A0EE8BDBDEB5F3FFC4 /* Pods-WheatherAppTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -302,7 +296,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				803B97C0276E14C5002AD61D /* WheatherGraph.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +410,8 @@
 				803B9728276CE6DF002AD61D /* LaunchScreen.storyboard in Resources */,
 				803B9725276CE6DF002AD61D /* Assets.xcassets in Resources */,
 				803B978B276CF84A002AD61D /* DashboardViewController.xib in Resources */,
+				801E7F20276F3D6900EE4209 /* CityTableViewCell.xib in Resources */,
+				801E7F1A276F343E00EE4209 /* CityListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,18 +462,16 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WheatherApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "
+";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -491,11 +484,14 @@
 				803B971C276CE6DC002AD61D /* AppDelegate.swift in Sources */,
 				803B978A276CF84A002AD61D /* DashboardViewController.swift in Sources */,
 				803B971E276CE6DC002AD61D /* SceneDelegate.swift in Sources */,
+				801E7F19276F343D00EE4209 /* CityListViewController.swift in Sources */,
+				801E7F14276F1A9A00EE4209 /* Protocols.swift in Sources */,
 				803B9770276CF09C002AD61D /* WebServices.swift in Sources */,
-				803B977F276CF40A002AD61D /* WebServicesExtension.swift in Sources */,
+				803B977F276CF40A002AD61D /* Extension.swift in Sources */,
 				803B9774276CF0CA002AD61D /* Utils.swift in Sources */,
 				803B9794276D094B002AD61D /* WeatherModel.swift in Sources */,
 				803B9790276D0892002AD61D /* DashboardViewModel.swift in Sources */,
+				801E7F1F276F3D6900EE4209 /* CityTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,7 +659,6 @@
 		};
 		803B972D276CE6DF002AD61D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25AE7BA415E8027EAC3AFB01 /* Pods-WheatherApp.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -684,7 +679,6 @@
 		};
 		803B972E276CE6DF002AD61D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B7A35D1166E45E83C47BFDF /* Pods-WheatherApp.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -705,7 +699,6 @@
 		};
 		803B9754276CE922002AD61D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CAECCB1823C3FFC2D1AA6FF8 /* Pods-WheatherAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -725,7 +718,6 @@
 		};
 		803B9755276CE922002AD61D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FD840A0EE8BDBDEB5F3FFC4 /* Pods-WheatherAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

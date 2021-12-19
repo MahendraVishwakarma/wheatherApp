@@ -11,7 +11,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -19,12 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let window = UIWindow(windowScene: windowScene)
-        let initialViewController = DashboardViewController()
-        
-        window.rootViewController = initialViewController
-        window.makeKeyAndVisible()
-        self.window = window
+        self.initializeScene(windowScene: windowScene)
         
     }
 
@@ -55,7 +49,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
+    
+    private func initializeScene(windowScene:UIWindowScene){
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = startScene()
+        window.makeKeyAndVisible()
+        self.window = window
+    }
+    private func startScene() -> UIViewController {
+        let initialViewController = DashboardViewController()
+        let gLayer = UIColor.GradientLayer(colors:[DashboardGradientColors.top.value,DashboardGradientColors.bottom.value])
+        gLayer.frame = initialViewController.view.bounds
+        initialViewController.viewModel = DashboardViewModel()
+        initialViewController.viewModel?.delegate = initialViewController
+        initialViewController.view.layer.insertSublayer(gLayer, at:0)
+        return initialViewController
+    }
 
 }
 

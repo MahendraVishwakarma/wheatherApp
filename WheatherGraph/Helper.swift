@@ -24,6 +24,21 @@ class Helper {
         let percentage = ConstantValue.ARC_DEGREE + ConstantValue.ARC_DEGREE*apiPercentage
         return CGFloat(percentage)
     }
+    open class func currentStatus(aqi:Double) -> (String,UIColor){
+        if aqi >= 0.0 && aqi <= 50.0 {
+            return (ConstantValue.GOOD,GradientColor.colorGood)
+        }else if aqi > 50.0 && aqi <= 100.0 {
+            return (ConstantValue.SATISFACTORY,GradientColor.colorSatisfactory)
+        }else if aqi > 100.0 && aqi <= 200.0 {
+            return (ConstantValue.MODERATE, GradientColor.colorModerate)
+        }else if aqi > 200.0 && aqi <= 300.0 {
+            return (ConstantValue.POOR, GradientColor.colorPoor)
+        }else if aqi > 300.0 && aqi <= 400.0 {
+            return (ConstantValue.VERY_POOR,GradientColor.colorVeryPoor)
+        }else  {
+            return (ConstantValue.SEVERE,GradientColor.colorSevere)
+        }
+    }
     
 }
 
